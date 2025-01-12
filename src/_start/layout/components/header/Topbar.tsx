@@ -32,7 +32,7 @@ export function Topbar() {
       {/* end::Search */}
 
       {/* begin::Message */}
-      <button
+      {/* <button
         className="btn btn-icon btn-sm btn-active-bg-accent ms-1 ms-lg-6"
         onClick={() => setShowInboxComposeModal(true)}
       >
@@ -40,7 +40,7 @@ export function Topbar() {
           path="/media/icons/duotone/Communication/Chat6.svg"
           className="svg-icon-1 svg-icon-dark"
         />
-      </button>
+      </button> */}
       <InboxCompose
         show={showInboxComposeModal}
         handleClose={() => setShowInboxComposeModal(false)}
@@ -82,7 +82,7 @@ export function Topbar() {
       {/* end::Notifications */}
 
       {/* begin::Aside Toggler */}
-      {config.aside.display && (
+      {/* {config.aside.display && (
         <button
           className="btn btn-icon btn-sm btn-active-bg-accent d-lg-none ms-1 ms-lg-6"
           id="kt_aside_toggler"
@@ -92,11 +92,11 @@ export function Topbar() {
             className="svg-icon-1 svg-icon-dark"
           />
         </button>
-      )}
+      )} */}
       {/* end::Aside Toggler */}
 
       {/* begin::Sidebar Toggler */}
-      {config.sidebar.display && (
+      {/* {config.sidebar.display && (
         <button
           className="btn btn-icon btn-sm btn-active-bg-accent d-lg-none ms-1 ms-lg-6"
           id="kt_sidebar_toggler"
@@ -106,7 +106,7 @@ export function Topbar() {
             className="svg-icon-1 svg-icon-dark"
           />
         </button>
-      )}
+      )} */}
       {/* end::Sidebar Toggler */}
     </>
   );

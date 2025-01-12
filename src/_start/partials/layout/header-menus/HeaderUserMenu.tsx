@@ -27,9 +27,7 @@ export function HeaderUserMenu() {
         </div>
         <div className="">
           <span className="text-white fw-bolder fs-4">Hello, James</span>
-          <span className="text-white fw-bold fs-7 d-block">
-            CRM Product Designer
-          </span>
+          <span className="text-white fw-bold fs-7 d-block">田徑隊成員</span>
         </div>
       </div>
 
@@ -44,7 +42,7 @@ export function HeaderUserMenu() {
             className="svg-icon-3x me-n1"
             path="/media/icons/duotone/Layout/Layout-4-blocks-2.svg"
           />
-          <span className="  fw-bolder fs-6 d-block pt-3">My Profile</span>
+          <span className="  fw-bolder fs-6 d-block pt-3">我的資料</span>
         </Link>
 
         <Link
@@ -56,7 +54,7 @@ export function HeaderUserMenu() {
             className="svg-icon-3x me-n1"
             path="/media/icons/duotone/General/Settings-1.svg"
           />
-          <span className="fw-bolder fs-6 d-block pt-3">Settings</span>
+          <span className="fw-bolder fs-6 d-block pt-3">設置</span>
         </Link>
 
         <Link
@@ -68,7 +66,7 @@ export function HeaderUserMenu() {
             className="svg-icon-3x me-n1"
             path="/media/icons/duotone/Shopping/Euro.svg"
           />
-          <span className="fw-bolder fs-6 d-block pt-3">Subscriptions</span>
+          <span className="fw-bolder fs-6 d-block pt-3">訂閱</span>
         </Link>
 
         <Link
@@ -80,7 +78,7 @@ export function HeaderUserMenu() {
             className="svg-icon-3x me-n1"
             path="/media/icons/duotone/Navigation/Sign-out.svg"
           />
-          <span className="fw-bolder fs-6 d-block pt-3">Sign Out</span>
+          <span className="fw-bolder fs-6 d-block pt-3">登出</span>
         </Link>
       </div>
       {/* end::Row */}

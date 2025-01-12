@@ -9,6 +9,7 @@ import { Content } from "./components/Content";
 import { MasterInit } from "./MasterInit";
 import { PageDataProvider } from "./core";
 import { ExploreMain } from "../partials";
+import { MobileBottomNav } from "../../app/pages/MobileBottomNav";
 
 const MasterLayout: React.FC = ({ children }) => {
   return (
@@ -31,6 +32,7 @@ const MasterLayout: React.FC = ({ children }) => {
               </div>
             </div>
             <Footer />
+            <MobileBottomNav />
           </div>
           <Sidebar />
         </div>

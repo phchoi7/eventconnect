@@ -34,16 +34,16 @@ const StatsWidget1: React.FC<Props> = ({ className, innerPadding = "" }) => {
 
   return (
     <div className={`card ${className}`}>
-      {/* begin::Header */}
+      {/* Header */}
       <div
         className={`card-header align-items-center border-0 mt-5 ${innerPadding}`}
       >
         <h3 className="card-title align-items-start flex-column">
-          <span className="fw-bolder text-dark fs-3">Sales Share</span>
-          <span className="text-muted mt-2 fw-bold fs-6">890,344 Sales</span>
+          <span className="fw-bolder text-dark fs-3">運動數據分佈</span>
+          <span className="text-muted mt-2 fw-bold fs-6">本月運動參與比例</span>
         </h3>
         <div className="card-toolbar">
-          {/* begin::Dropdown */}
+          {/* Dropdown */}
           <button
             type="button"
             className="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
@@ -57,14 +57,12 @@ const StatsWidget1: React.FC<Props> = ({ className, innerPadding = "" }) => {
             />
           </button>
           <Dropdown1 />
-          {/* end::Dropdown */}
+          {/* Dropdown */}
         </div>
       </div>
-      {/* end::Header */}
-
-      {/* begin::Body */}
+      {/* Body */}
       <div className="card-body pt-12">
-        {/* begin::Chart */}
+        {/* Chart */}
         <div
           className="d-flex flex-center position-relative bgi-no-repeat bgi-size-contain bgi-position-x-center bgi-position-y-center h-175px"
           style={{
@@ -74,38 +72,34 @@ const StatsWidget1: React.FC<Props> = ({ className, innerPadding = "" }) => {
           }}
         >
           <div className="fw-bolder fs-1 text-gray-800 position-absolute">
-            8,345
+            12,345
           </div>
           <canvas id="kt_stats_widget_1_chart"></canvas>
         </div>
-        {/* end::Chart */}
+        {/* Chart */}
 
-        {/* begin::Items */}
+        {/* Items */}
         <div className="d-flex justify-content-around pt-18">
-          {/* begin::Item */}
+          {/* Football */}
           <div className="">
-            <span className="fw-bolder text-gray-800">48% SNT</span>
-            <span className="bg-info w-25px h-5px d-block rounded mt-1"></span>
+            <span className="fw-bolder text-gray-800">45% 足球</span>
+            <span className="bg-success w-25px h-5px d-block rounded mt-1"></span>
           </div>
-          {/* end::Item */}
 
-          {/* begin::Item */}
+          {/* Basketball */}
           <div className="">
-            <span className="fw-bolder text-gray-800">20% REX</span>
+            <span className="fw-bolder text-gray-800">30% 籃球</span>
             <span className="bg-primary w-25px h-5px d-block rounded mt-1"></span>
           </div>
-          {/* end::Item */}
 
-          {/* begin::Item */}
+          {/* Tennis */}
           <div className="">
-            <span className="fw-bolder text-gray-800">32% SAP</span>
+            <span className="fw-bolder text-gray-800">25% 網球</span>
             <span className="bg-warning w-25px h-5px d-block rounded mt-1"></span>
           </div>
-          {/* end::Item */}
         </div>
-        {/* end::Items */}
+        {/* Items */}
       </div>
-      {/* end: Card Body */}
     </div>
   );
 };
@@ -117,19 +111,19 @@ function getChartOptions() {
   const tooltipColor = getCSSVariableValue("--bs-gray-800");
 
   const color1 = getCSSVariableValue("--bs-success");
-  const color2 = getCSSVariableValue("--bs-warning");
-  const color3 = getCSSVariableValue("--bs-primary");
+  const color2 = getCSSVariableValue("--bs-primary");
+  const color3 = getCSSVariableValue("--bs-warning");
 
   const options: ChartConfiguration = {
     type: "doughnut",
     data: {
       datasets: [
         {
-          data: [30, 40, 25],
+          data: [45, 30, 25],
           backgroundColor: [color1, color2, color3],
         },
       ],
-      labels: ["Angular", "CSS", "HTML"],
+      labels: ["足球", "籃球", "網球"],
     },
     options: {
       cutoutPercentage: 75,
@@ -141,7 +135,7 @@ function getChartOptions() {
       },
       title: {
         display: false,
-        text: "Technology",
+        text: "運動數據分佈",
       },
       animation: {
         animateScale: true,
@@ -166,7 +160,3 @@ function getChartOptions() {
   };
   return options;
 }
-
-// function randomScalingFactor() {
-//   return Math.round(Math.random() * 100);
-// }

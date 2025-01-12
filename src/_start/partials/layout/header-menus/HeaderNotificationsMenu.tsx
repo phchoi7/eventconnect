@@ -10,7 +10,7 @@ export function HeaderNotificationsMenu() {
     >
       <div className="menu-item mx-3">
         <div className="menu-content fs-6 text-dark fw-bolder py-6">
-          4 New Notifications
+          4 條最新通知
         </div>
       </div>
 
@@ -28,10 +28,8 @@ export function HeaderNotificationsMenu() {
           </div>
 
           <div className="ps-4">
-            <span className="menu-title fw-bold mb-1">
-              New Uer Library Added
-            </span>
-            <span className="text-muted fw-bold d-block fs-7">3 Hours ago</span>
+            <span className="menu-title fw-bold mb-1">新增比賽賽程</span>
+            <span className="text-muted fw-bold d-block fs-7">3 小時前</span>
           </div>
         </a>
       </div>
@@ -47,8 +45,8 @@ export function HeaderNotificationsMenu() {
             </span>
           </div>
           <div className="ps-4">
-            <span className="menu-title fw-bold mb-1">Clean Microphone</span>
-            <span className="text-muted fw-bold d-block fs-7">5 Hours ago</span>
+            <span className="menu-title fw-bold mb-1">賽後記者會即將開始</span>
+            <span className="text-muted fw-bold d-block fs-7">5 小時前</span>
           </div>
         </a>
       </div>
@@ -65,8 +63,8 @@ export function HeaderNotificationsMenu() {
           </div>
 
           <div className="ps-4">
-            <span className="menu-title fw-bold mb-1">Quick Chat Created</span>
-            <span className="text-muted fw-bold d-block fs-7">A Day ago</span>
+            <span className="menu-title fw-bold mb-1">新增互動投票活動</span>
+            <span className="text-muted fw-bold d-block fs-7">1 天前</span>
           </div>
         </a>
       </div>
@@ -83,8 +81,10 @@ export function HeaderNotificationsMenu() {
           </div>
 
           <div className="ps-4">
-            <span className="menu-title fw-bold mb-1">32 New Attachements</span>
-            <span className="text-muted fw-bold d-block fs-7">2 Day ago</span>
+            <span className="menu-title fw-bold mb-1">
+              32 條新相片和視頻已上傳
+            </span>
+            <span className="text-muted fw-bold d-block fs-7">2 天前</span>
           </div>
         </a>
       </div>
@@ -94,10 +94,10 @@ export function HeaderNotificationsMenu() {
       <div className="menu-item mx-2">
         <div className="menu-content py-5">
           <a href="#" className="btn btn-primary fw-bolder me-2 px-5">
-            Report
+            查看報告
           </a>
           <a href="#" className="btn btn-light fw-bolder px-5">
-            Reset
+            重置
           </a>
         </div>
       </div>

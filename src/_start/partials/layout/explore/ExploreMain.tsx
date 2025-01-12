@@ -9,7 +9,7 @@ import { KTSVG } from "../../../helpers";
 export function ExploreMain() {
   return (
     <>
-      <Toggle />
+      {/* <Toggle /> */}
       {/* begin::Exolore drawer */}
       <div
         id="kt_explore"

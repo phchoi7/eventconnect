@@ -17,7 +17,7 @@ const generalBreadCrumbs: Array<PageLink> = [
     isActive: false,
   },
   {
-    title: "General",
+    title: "Vote",
     path: "",
     isActive: false,
   },
