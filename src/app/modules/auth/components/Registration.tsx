@@ -19,32 +19,29 @@ const initialValues = {
 
 const registrationSchema = Yup.object().shape({
   firstname: Yup.string()
-    .min(3, "Minimum 3 symbols")
-    .max(50, "Maximum 50 symbols")
-    .required("First name is required"),
+    .min(3, "至少3個字符")
+    .max(50, "最多50個字符")
+    .required("必須填寫名字"),
   email: Yup.string()
-    .email("Wrong email format")
-    .min(3, "Minimum 3 symbols")
-    .max(50, "Maximum 50 symbols")
-    .required("Email is required"),
+    .email("電郵格式錯誤")
+    .min(3, "至少3個字符")
+    .max(50, "最多50個字符")
+    .required("必須填寫電郵"),
   lastname: Yup.string()
-    .min(3, "Minimum 3 symbols")
-    .max(50, "Maximum 50 symbols")
-    .required("Last name is required"),
+    .min(3, "至少3個字符")
+    .max(50, "最多50個字符")
+    .required("必須填寫姓氏"),
   password: Yup.string()
-    .min(3, "Minimum 3 symbols")
-    .max(50, "Maximum 50 symbols")
-    .required("Password is required"),
+    .min(3, "至少3個字符")
+    .max(50, "最多50個字符")
+    .required("必須填寫密碼"),
   changepassword: Yup.string()
-    .required("Password confirmation is required")
+    .required("必須確認密碼")
     .when("password", {
       is: (val: string) => (val && val.length > 0 ? true : false),
-      then: Yup.string().oneOf(
-        [Yup.ref("password")],
-        "Password and Confirm Password didn't match"
-      ),
+      then: Yup.string().oneOf([Yup.ref("password")], "密碼與確認密碼不一致"),
     }),
-  acceptTerms: Yup.bool().required("You must accept the terms and conditions"),
+  acceptTerms: Yup.bool().required("您必須同意條款與細則"),
 });
 
 export function Registration() {
@@ -69,7 +66,7 @@ export function Registration() {
           .catch(() => {
             setLoading(false);
             setSubmitting(false);
-            setStatus("Registration process has broken");
+            setStatus("註冊過程出現問題");
           });
       }, 1000);
     },
@@ -82,14 +79,11 @@ export function Registration() {
       id="kt_login_signup_form"
       onSubmit={formik.handleSubmit}
     >
-      {/* begin::Title */}
+      {/* Title */}
       <div className="pb-5 pb-lg-15">
-        <h3 className="fw-bolder text-dark display-6">Sign Up</h3>
-        <p className="text-muted fw-bold fs-3">
-          Enter your details to create your account
-        </p>
+        <h3 className="fw-bolder text-dark display-6">註冊帳戶</h3>
+        <p className="text-muted fw-bold fs-3">輸入您的詳細信息以創建帳戶</p>
       </div>
-      {/* end::Title */}
 
       {formik.status && (
         <div className="mb-lg-15 alert alert-danger">
@@ -97,13 +91,11 @@ export function Registration() {
         </div>
       )}
 
-      {/* begin::Form group Firstname */}
+      {/* First Name */}
       <div className="fv-row mb-5">
-        <label className="form-label fs-6 fw-bolder text-dark pt-5">
-          First name
-        </label>
+        <label className="form-label fs-6 fw-bolder text-dark pt-5">名字</label>
         <input
-          placeholder="First name"
+          placeholder="名字"
           type="text"
           autoComplete="off"
           {...formik.getFieldProps("firstname")}
@@ -123,15 +115,12 @@ export function Registration() {
           </div>
         )}
       </div>
-      {/* end::Form group */}
 
-      {/* begin::Form group Lastname */}
+      {/* Last Name */}
       <div className="fv-row mb-5">
-        <label className="form-label fs-6 fw-bolder text-dark pt-5">
-          Last name
-        </label>
+        <label className="form-label fs-6 fw-bolder text-dark pt-5">姓氏</label>
         <input
-          placeholder="Last name"
+          placeholder="姓氏"
           type="text"
           autoComplete="off"
           {...formik.getFieldProps("lastname")}
@@ -151,15 +140,12 @@ export function Registration() {
           </div>
         )}
       </div>
-      {/* end::Form group */}
 
-      {/* begin::Form group Email */}
+      {/* Email */}
       <div className="fv-row mb-5">
-        <label className="form-label fs-6 fw-bolder text-dark pt-5">
-          Email
-        </label>
+        <label className="form-label fs-6 fw-bolder text-dark pt-5">電郵</label>
         <input
-          placeholder="Email"
+          placeholder="電郵"
           type="email"
           autoComplete="off"
           {...formik.getFieldProps("email")}
@@ -177,16 +163,13 @@ export function Registration() {
           </div>
         )}
       </div>
-      {/* end::Form group */}
 
-      {/* begin::Form group Password */}
+      {/* Password */}
       <div className="fv-row mb-5">
-        <label className="form-label fs-6 fw-bolder text-dark pt-5">
-          Password
-        </label>
+        <label className="form-label fs-6 fw-bolder text-dark pt-5">密碼</label>
         <input
           type="password"
-          placeholder="Password"
+          placeholder="密碼"
           autoComplete="off"
           {...formik.getFieldProps("password")}
           className={clsx(
@@ -205,16 +188,15 @@ export function Registration() {
           </div>
         )}
       </div>
-      {/* end::Form group */}
 
-      {/* begin::Form group Confirm password */}
+      {/* Confirm Password */}
       <div className="fv-row mb-10">
         <label className="form-label fs-6 fw-bolder text-dark pt-5">
-          Confirm Password
+          確認密碼
         </label>
         <input
           type="password"
-          placeholder="Password confirmation"
+          placeholder="再次輸入密碼"
           autoComplete="off"
           {...formik.getFieldProps("changepassword")}
           className={clsx(
@@ -235,9 +217,8 @@ export function Registration() {
           </div>
         )}
       </div>
-      {/* end::Form group */}
 
-      {/* begin::Form group */}
+      {/* Accept Terms */}
       <div className="fv-row mb-10">
         <div className="form-check form-check-custom form-check-solid mb-5">
           <input
@@ -250,11 +231,10 @@ export function Registration() {
             className="form-check-label fw-bold text-gray-600"
             htmlFor="kt_login_toc_agree"
           >
-            I Agree the{" "}
+            我同意{" "}
             <Link to="/auth/terms" className="ms-1">
-              terms and conditions
+              條款與細則
             </Link>
-            .
           </label>
           {formik.touched.acceptTerms && formik.errors.acceptTerms && (
             <div className="fv-plugins-message-container">
@@ -263,9 +243,8 @@ export function Registration() {
           )}
         </div>
       </div>
-      {/* end::Form group */}
 
-      {/* begin::Form group */}
+      {/* Actions */}
       <div className="d-flex flex-wrap pb-lg-0 pb-5">
         <button
           type="submit"
@@ -275,10 +254,10 @@ export function Registration() {
             formik.isSubmitting || !formik.isValid || !formik.values.acceptTerms
           }
         >
-          {!loading && <span className="indicator-label">Submit</span>}
+          {!loading && <span className="indicator-label">提交</span>}
           {loading && (
             <span className="indicator-progress" style={{ display: "block" }}>
-              Please wait...{" "}
+              請稍候...{" "}
               <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
             </span>
           )}
@@ -289,11 +268,10 @@ export function Registration() {
             id="kt_login_signup_form_cancel_button"
             className="btn btn-light-primary fw-bolder fs-6 px-8 py-4 my-3"
           >
-            Cancel
+            取消
           </button>
         </Link>
       </div>
-      {/* end::Form group */}
     </form>
   );
 }

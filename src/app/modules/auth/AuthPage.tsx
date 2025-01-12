@@ -35,9 +35,9 @@ export function AuthPage() {
 
             {/* begin::Aside Subtitle */}
             <h3 className="fw-bolder fs-2x text-white lh-lg">
-              Discover Start
+              全運互動通
               <br />
-              with great build tools
+              帶來最新的全運會資訊與互動
             </h3>
             {/* end::Aside Subtitle */}
           </div>
@@ -66,15 +66,15 @@ export function AuthPage() {
           </div>
           <div className="d-flex justify-content-lg-start justify-content-center align-items-center py-7 py-lg-0">
             <span className="text-primary fw-bolder fs-4 cursor-pointer">
-              Terms
+              條款
             </span>
-            <span className="text-primary ms-10 fw-bolder fs-4">Plans</span>
-            <span className="text-primary ms-10 fw-bolder fs-4">
-              Contact Us
-            </span>
+            <span className="text-primary ms-10 fw-bolder fs-4">計劃</span>
+            <span className="text-primary ms-10 fw-bolder fs-4">聯絡我們</span>
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+// In Login Component, update the Google login text to "利用智方便登入"

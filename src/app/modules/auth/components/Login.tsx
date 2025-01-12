@@ -10,26 +10,20 @@ import { toAbsoluteUrl } from "../../../../_start/helpers";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Wrong email format")
-    .min(3, "Minimum 3 symbols")
-    .max(50, "Maximum 50 symbols")
-    .required("Email is required"),
+    .email("電郵格式錯誤")
+    .min(3, "至少3個字符")
+    .max(50, "最多50個字符")
+    .required("必須填寫電郵"),
   password: Yup.string()
-    .min(3, "Minimum 3 symbols")
-    .max(50, "Maximum 50 symbols")
-    .required("Password is required"),
+    .min(3, "至少3個字符")
+    .max(50, "最多50個字符")
+    .required("必須填寫密碼"),
 });
 
 const initialValues = {
   email: "admin@demo.com",
   password: "demo",
 };
-
-/*
-  Formik+YUP+Typescript:
-  https://jaredpalmer.com/formik/docs/tutorial#getfieldprops
-  https://medium.com/@maurice.de.beijer/yup-validation-and-typescript-and-formik-6c342578a20e
-*/
 
 export function Login() {
   const [loading, setLoading] = useState(false);
@@ -48,7 +42,7 @@ export function Login() {
           .catch(() => {
             setLoading(false);
             setSubmitting(false);
-            setStatus("The login detail is incorrect");
+            setStatus("登入資料不正確");
           });
       }, 1000);
     },
@@ -61,21 +55,20 @@ export function Login() {
       noValidate
       id="kt_login_signin_form"
     >
-      {/* begin::Title */}
+      {/* Title */}
       <div className="pb-lg-15">
-        <h3 className="fw-bolder text-dark display-6">Welcome to Start</h3>
+        <h3 className="fw-bolder text-dark display-6">歡迎來到全運互動通</h3>
         <div className="text-muted fw-bold fs-3">
-          New Here?{" "}
+          新用戶？{" "}
           <Link
             to="/auth/registration"
             className="text-primary fw-bolder"
             id="kt_login_signin_form_singup_button"
           >
-            Create Account
+            創建賬戶
           </Link>
         </div>
       </div>
-      {/* begin::Title */}
 
       {formik.status ? (
         <div className="mb-lg-15 alert alert-danger">
@@ -83,18 +76,18 @@ export function Login() {
         </div>
       ) : (
         <div className="mb-lg-15 alert alert-info">
-          <div className="alert-text ">
-            Use credentials <strong>admin@demo.com</strong> and{" "}
-            <strong>demo</strong> to sign in.
+          <div className="alert-text">
+            使用憑據 <strong>admin@demo.com</strong> 和 <strong>demo</strong>{" "}
+            登入。
           </div>
         </div>
       )}
 
-      {/* begin::Form group */}
-      <div className="v-row mb-10 fv-plugins-icon-container">
-        <label className="form-label fs-6 fw-bolder text-dark">Email</label>
+      {/* Email Field */}
+      <div className="fv-row mb-10 fv-plugins-icon-container">
+        <label className="form-label fs-6 fw-bolder text-dark">電郵</label>
         <input
-          placeholder="Email"
+          placeholder="電郵"
           {...formik.getFieldProps("email")}
           className={clsx(
             "form-control form-control-lg form-control-solid",
@@ -113,21 +106,19 @@ export function Login() {
           </div>
         )}
       </div>
-      {/* end::Form group */}
 
-      {/* begin::Form group */}
+      {/* Password Field */}
       <div className="fv-row mb-10 fv-plugins-icon-container">
         <div className="d-flex justify-content-between mt-n5">
           <label className="form-label fs-6 fw-bolder text-dark pt-5">
-            Password
+            密碼
           </label>
-
           <Link
             to="/auth/forgot-password"
             className="text-primary fs-6 fw-bolder text-hover-primary pt-5"
             id="kt_login_signin_form_password_reset_button"
           >
-            Forgot Password ?
+            忘記密碼？
           </Link>
         </div>
         <input
@@ -150,9 +141,8 @@ export function Login() {
           </div>
         )}
       </div>
-      {/* end::Form group */}
 
-      {/* begin::Action */}
+      {/* Actions */}
       <div className="pb-lg-0 pb-5">
         <button
           type="submit"
@@ -160,10 +150,10 @@ export function Login() {
           className="btn btn-primary fw-bolder fs-6 px-8 py-4 my-3 me-3"
           disabled={formik.isSubmitting || !formik.isValid}
         >
-          {!loading && <span className="indicator-label">Sign In</span>}
+          {!loading && <span className="indicator-label">登入</span>}
           {loading && (
             <span className="indicator-progress" style={{ display: "block" }}>
-              Please wait...{" "}
+              請稍候...{" "}
               <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
             </span>
           )}
@@ -173,14 +163,15 @@ export function Login() {
           className="btn btn-light-primary fw-bolder px-8 py-4 my-3 fs-6 mr-3"
         >
           <img
-            src={toAbsoluteUrl("/media/svg/brand-logos/google-icon.svg")}
+            src={toAbsoluteUrl(
+              "https://play-lh.googleusercontent.com/kT--WVNwDsN3jgG51dHC4vVB86qNYO46crO-5hwXJIP3MYz3scRbH1SGYVz4aTSfEg"
+            )}
             className="w-20px h-20px me-3"
             alt=""
           />
-          Sign in with Google
+          利用智方便登入
         </button>
       </div>
-      {/* end::Action */}
     </form>
   );
 }
