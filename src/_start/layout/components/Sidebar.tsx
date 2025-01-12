@@ -2,31 +2,30 @@ import React, { useRef, useEffect } from "react";
 import { SidebarGeneral, SidebarShop, SidebarUser } from "../../partials";
 import { useTheme } from "../core";
 
-const BG_COLORS = ['bg-white' , 'bg-info'];
+const BG_COLORS = ["bg-white", "bg-info"];
 
 export function Sidebar() {
   const { config, classes } = useTheme();
   const sidebarCSSClass = classes.sidebar;
   const sideBarRef = useRef<HTMLDivElement | null>(null);
-  
+
   useEffect(() => {
     if (!sidebarCSSClass) {
       return;
     }
 
-    BG_COLORS.forEach(cssClass => {
+    BG_COLORS.forEach((cssClass) => {
       sideBarRef.current?.classList.remove(cssClass);
-    })
+    });
 
-    sidebarCSSClass.forEach(cssClass => {
+    sidebarCSSClass.forEach((cssClass) => {
       sideBarRef.current?.classList.add(cssClass);
-    })
-   
+    });
   }, [sidebarCSSClass]);
 
   return (
     <>
-      {config.sidebar.display && (
+      {!config.sidebar.display && (
         <div
           ref={sideBarRef}
           id="kt_sidebar"
