@@ -4,6 +4,7 @@ import { FallbackView } from "../../_start/partials";
 import { LightDashboardWrapper } from "../pages/dashboards/light-dashboard/LightDashboardWrapper";
 import { StartDashboardWrapper } from "../pages/dashboards/start-dashboard/StartDashboardWrapper";
 import { MenuTestPage } from "../pages/MenuTestPage";
+import { StartExerciseWrapper } from "../pages/dashboards/exercise/StartExerciseWrapper";
 
 export function PrivateRoutes() {
   const ProfilePageWrapper = lazy(
@@ -18,6 +19,7 @@ export function PrivateRoutes() {
     <Suspense fallback={<FallbackView />}>
       <Switch>
         <Route path="/dashboard" component={StartDashboardWrapper} />
+        <Route path="/exercise" component={StartExerciseWrapper} />
         {/* <Route path="/light" component={LightDashboardWrapper} /> */}
         <Route path="/vote" component={GeneralPageWrapper} />
         <Route path="/profile" component={ProfilePageWrapper} />
