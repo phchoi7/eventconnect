@@ -44,7 +44,7 @@ const StatsWidget1: React.FC<Props> = ({ className, innerPadding = "" }) => {
         </h3>
         <div className="card-toolbar">
           {/* Dropdown */}
-          <button
+          {/* <button
             type="button"
             className="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
             data-kt-menu-trigger="click"
@@ -55,7 +55,7 @@ const StatsWidget1: React.FC<Props> = ({ className, innerPadding = "" }) => {
               path="/media/icons/duotone/Layout/Layout-4-blocks-2.svg"
               className="svg-icon-1"
             />
-          </button>
+          </button> */}
           <Dropdown1 />
           {/* Dropdown */}
         </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import stadiumData from "./stadiumData.json"; // Adjust the path if necessary
+import { ChatBox } from "./ChatBox";
 
 export const StartExercisePage: React.FC = () => {
   const [weatherData, setWeatherData] = useState({
@@ -49,6 +50,33 @@ export const StartExercisePage: React.FC = () => {
           (stadium) => stadium.District_cn === selectedDistrict
         );
 
+  const isWeatherSuitable = () => {
+    const { generalSituation, forecastDesc } = weatherData;
+    const suitableConditions = ["天晴", "多雲", "陽光普照"];
+    return suitableConditions.some(
+      (condition) =>
+        generalSituation.includes(condition) || forecastDesc.includes(condition)
+    );
+  };
+
+  const getRecommendedActivity = () => {
+    const { generalSituation, forecastDesc } = weatherData;
+    if (generalSituation.includes("雨") || forecastDesc.includes("雨")) {
+      return "建議進行室內活動，如羽毛球、乒乓球等";
+    }
+    if (generalSituation.includes("天晴") || forecastDesc.includes("多雲")) {
+      return "適合進行戶外活動，如跑步、足球等";
+    }
+    return "天氣不穩定，請小心安排活動";
+  };
+
+  const hasExtremeWeather = () => {
+    const extremeConditions = ["雷暴", "暴雨", "颱風"];
+    return extremeConditions.some((condition) =>
+      weatherData.generalSituation.includes(condition)
+    );
+  };
+
   if (loading) {
     return <div className="text-center mt-5">載入中...</div>;
   }
@@ -65,21 +93,24 @@ export const StartExercisePage: React.FC = () => {
     new Set(stadiumData.map((stadium) => stadium.District_cn))
   );
 
-  const formatCoordinatesToDecimal = (dms: string): number => {
-    const [degrees, minutes, seconds] = dms.split("-").map(Number);
-    return degrees + minutes / 60 + seconds / 3600;
-  };
-
   return (
     <div className="container mt-5">
       <div className="text-center my-4">
         <h3 className="fw-bold display-6 text-primary">
-          <i className="fas fa-cloud-sun"></i> 香港天文台 - 天氣資訊
+          <i className="fas fa-cloud-sun"></i> 香港天文台 - 即時天氣資訊
         </h3>
         <p className="text-muted">實時天氣資訊與預報</p>
       </div>
 
-      <div className="card shadow-sm border-0 rounded-3">
+      {/* Weather Alerts */}
+      {hasExtremeWeather() && (
+        <div className="alert alert-danger text-center fw-bold">
+          注意：天氣極端，請避免戶外活動！
+        </div>
+      )}
+
+      {/* Weather Summary */}
+      <div className="card shadow-sm border-0 rounded-3 mb-4">
         <div className="card-body">
           <h4 className="fw-bold text-dark mb-4">
             <i className="fas fa-sun text-warning me-2"></i> 最新天氣概況
@@ -97,13 +128,6 @@ export const StartExercisePage: React.FC = () => {
               <strong>一般概況：</strong> {weatherData.generalSituation}
             </span>
           </div>
-          <div className="d-flex align-items-center mb-3">
-            <i className="fas fa-calendar-alt text-success me-3"></i>
-            <span>
-              <strong>{weatherData.forecastPeriod}：</strong>{" "}
-              {weatherData.forecastDesc}
-            </span>
-          </div>
           <div className="d-flex align-items-center">
             <i className="fas fa-chart-line text-info me-3"></i>
             <span>
@@ -112,6 +136,19 @@ export const StartExercisePage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Recommendation */}
+      <div className="alert alert-primary text-center fw-bold fs-5">
+        今天合適做運動嗎？{" "}
+        <span className={isWeatherSuitable() ? "text-success" : "text-danger"}>
+          {isWeatherSuitable() ? "宜" : "不宜"}
+        </span>
+      </div>
+
+      <div className="alert alert-info text-center fw-bold fs-5">
+        活動建議：你可以問問我們的AI小助手，關於任何活動也可以！
+      </div>
+      <ChatBox weatherData={weatherData} />
 
       {/* Filter and LCSD Sports Grounds */}
       <div className="mt-5">
@@ -137,68 +174,50 @@ export const StartExercisePage: React.FC = () => {
           </select>
         </div>
         <div className="row">
-          {filteredStadiums.map((stadium, index) => {
-            const latitude = formatCoordinatesToDecimal(stadium.Latitude);
-            const longitude = formatCoordinatesToDecimal(stadium.Longitude);
-            const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
-
-            return (
-              <div className="col-md-6 mb-4" key={index}>
-                <div className="card shadow-sm border-0 rounded-3">
-                  <div className="card-body">
-                    <h5 className="card-title fw-bold text-dark">
-                      {stadium.Name_cn} ({stadium.District_cn})
-                    </h5>
-                    <p className="text-muted mb-2">
-                      <i className="fas fa-map-marker-alt text-danger me-2"></i>
-                      {stadium.Address_cn || "地址暫無提供"}
-                    </p>
-                    <p className="text-muted mb-2">
-                      <strong>設施：</strong>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: stadium.Facilities_cn,
-                        }}
-                      ></span>
-                    </p>
-                    <p className="text-muted mb-2">
-                      <strong>開放時間：</strong>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: stadium.Opening_hours_cn,
-                        }}
-                      ></span>
-                    </p>
-                    <p className="text-muted">
-                      <strong>維修日：</strong>{" "}
-                      {stadium.Maintenance_day_cn || "無資料"}
-                    </p>
-                    <p className="text-muted">
-                      <strong>聯絡電話：</strong> {stadium.Phone || "無資料"}
-                    </p>
-                    <a
-                      href={googleMapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-outline-primary"
-                    >
-                      查看地圖 (View on Map)
-                    </a>
-                  </div>
+          {filteredStadiums.map((stadium, index) => (
+            <div className="col-md-6 mb-4" key={index}>
+              <div className="card shadow-sm border-0 rounded-3">
+                <div className="card-body">
+                  <h5 className="card-title fw-bold text-dark">
+                    {stadium.Name_cn} ({stadium.District_cn})
+                  </h5>
+                  <p className="text-muted mb-2">
+                    <i className="fas fa-map-marker-alt text-danger me-2"></i>
+                    {stadium.Address_cn || "地址暫無提供"}
+                  </p>
+                  <p className="text-muted mb-2">
+                    <strong>設施：</strong>
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: stadium.Facilities_cn,
+                      }}
+                    ></span>
+                  </p>
+                  <p className="text-muted">
+                    <strong>電話：</strong> {stadium.Phone || "無資料"}
+                  </p>
+                  <a
+                    href={`https://www.google.com/maps?q=${stadium.Latitude},${stadium.Longitude}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline-primary mt-2"
+                  >
+                    查看地圖
+                  </a>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
-      </div>
 
-      <div className="text-center mt-4">
-        <button
-          className="btn btn-primary"
-          onClick={() => window.location.reload()}
-        >
-          <i className="fas fa-sync-alt"></i> 重新載入
-        </button>
+        <div className="text-center mt-4">
+          <button
+            className="btn btn-primary"
+            onClick={() => window.location.reload()}
+          >
+            <i className="fas fa-sync-alt"></i> 重新載入
+          </button>
+        </div>
       </div>
     </div>
   );

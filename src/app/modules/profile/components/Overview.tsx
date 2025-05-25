@@ -4,7 +4,7 @@ import { toAbsoluteUrl } from "../../../../_start/helpers";
 export function Overview() {
   const user = {
     name: "James",
-    email: "liwei@sportsstar.com",
+    email: "admin@demo.com",
     avatar: "https://via.placeholder.com/150",
     bio: "國家田徑隊成員，擅長100米短跑和接力賽，夢想成為奧運金牌得主。",
     stats: {
@@ -47,7 +47,7 @@ export function Overview() {
             <div className="card shadow-sm text-center">
               <div className="card-body">
                 <h3 className="fw-bold">{user.stats.championships}</h3>
-                <p className="text-muted mb-0">冠軍頭銜</p>
+                <p className="text-muted mb-0">粉絲人數</p>
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@ export function Overview() {
             <div className="card shadow-sm text-center">
               <div className="card-body">
                 <h3 className="fw-bold">{user.stats.records}</h3>
-                <p className="text-muted mb-0">打破紀錄</p>
+                <p className="text-muted mb-0">追蹤中</p>
               </div>
             </div>
           </div>
