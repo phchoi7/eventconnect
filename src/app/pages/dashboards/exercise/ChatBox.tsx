@@ -20,7 +20,7 @@ Current weather data from Hong Kong Observatory:
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 禁止色情、暴力、18+ 主題
+  // 禁止色情、暴力、18+、及粗口、罵人用語
   const FORBIDDEN_PATTERNS = [
     /色情/,
     /暴力/,
@@ -29,6 +29,18 @@ Current weather data from Hong Kong Observatory:
     /adult/i,
     /rape/i,
     /xxx/i,
+    /fuck/i,
+    /shit/i,
+    /damn/i,
+    /bitch/i,
+    /asshole/i,
+    /屌/,
+    /撚/,
+    /閪/,
+    /操/,
+    /他媽/,
+    /幹你娘/,
+    /狗娘養的/,
   ];
 
   // 觸發詢問名稱
@@ -58,7 +70,8 @@ Current weather data from Hong Kong Observatory:
         ...prev,
         {
           role: "assistant",
-          content: "I am Sally-GPT, developed by Sally Tam Leung Wai.",
+          content:
+            "I am Sally-GPT, developed by Sally Tam Leung Wai technology team.😎",
         },
       ]);
       setInput("");
@@ -71,7 +84,8 @@ Current weather data from Hong Kong Observatory:
         ...prev,
         {
           role: "assistant",
-          content: "抱歉，我無法回答此類問題。",
+          content:
+            "抱歉，我無法回答此類問題。你會唔會用左禁止用詞呢，我地色情、暴力、18+、及粗口、罵人用語架😘",
         },
       ]);
       setInput("");
