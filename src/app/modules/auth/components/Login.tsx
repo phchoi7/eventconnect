@@ -57,7 +57,7 @@ export function Login() {
     >
       {/* Title */}
       <div className="pb-lg-15">
-        <h3 className="fw-bolder text-dark display-6">歡迎來到全運互動通</h3>
+        <h3 className="fw-bolder text-dark display-6">歡迎來到Go Safe AI</h3>
         <div className="text-muted fw-bold fs-3">
           新用戶？{" "}
           <Link

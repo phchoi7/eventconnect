@@ -34,14 +34,14 @@ export const MobileBottomNav: React.FC = () => {
 
         {/* Nav Item 2: 賽程 */}
         <Link
-          to="/schedule"
+          to="/vote"
           className="nav-link text-center"
           style={{
             flex: 1,
           }}
         >
           <i className="fas fa-calendar-alt fs-3 text-primary"></i>
-          <div className="fw-bold fs-7 mt-1">賽程</div>
+          <div className="fw-bold fs-7 mt-1">團隊</div>
         </Link>
 
         {/* Nav Item 3: 我要運動 (Center Icon) */}
@@ -63,7 +63,7 @@ export const MobileBottomNav: React.FC = () => {
               marginBottom: "5px",
             }}
           ></i>
-          <div className="fw-bold fs-7 mt-1">運動</div>
+          <div className="fw-bold fs-7 mt-1">出行運動</div>
         </Link>
 
         {/* Nav Item 4: 互動 */}

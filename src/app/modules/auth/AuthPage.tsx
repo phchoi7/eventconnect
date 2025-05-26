@@ -35,9 +35,9 @@ export function AuthPage() {
 
             {/* begin::Aside Subtitle */}
             <h3 className="fw-bolder fs-2x text-white lh-lg">
-              全運互動通
+              Go Safe AI
               <br />
-              帶來最新的全運會資訊與互動
+              助你玩得開心，探索天氣的無限可限可能
             </h3>
             {/* end::Aside Subtitle */}
           </div>

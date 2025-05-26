@@ -48,7 +48,7 @@ export const StartDashboardPage: React.FC = () => {
     <>
       {/* Header */}
       <div className="text-center my-4">
-        <h3 className="fw-bold display-6 text-primary">全運互動通</h3>
+        <h3 className="fw-bold display-6 text-primary">Go Safe AI</h3>
         <p className="text-muted">帶來最新的全運會資訊與互動</p>
       </div>
 

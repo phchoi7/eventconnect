@@ -49,7 +49,10 @@ const GeneralPageWrapper: React.FC = () => {
         breadcrumbs={generalBreadCrumbs}
         submenu={generalSubmenu}
       />
-      <GeneralPage />
+      {/* <GeneralPage /> */}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        🥲 Sorry....頁面開發中
+      </div>
     </>
   );
 };

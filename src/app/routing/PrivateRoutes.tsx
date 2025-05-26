@@ -18,7 +18,7 @@ export function PrivateRoutes() {
   return (
     <Suspense fallback={<FallbackView />}>
       <Switch>
-        <Route path="/dashboard" component={StartDashboardWrapper} />
+        <Route path="/dashboard" component={StartExerciseWrapper} />
         <Route path="/exercise" component={StartExerciseWrapper} />
         {/* <Route path="/light" component={LightDashboardWrapper} /> */}
         <Route path="/vote" component={GeneralPageWrapper} />

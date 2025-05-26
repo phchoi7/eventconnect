@@ -9,7 +9,7 @@ export const ChatBox: React.FC<{ weatherData: any }> = ({ weatherData }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "system",
-      content: `You are a friendly assistant.
+      content: `You are Sally-GPT, a friendly weather assistant developed by Sally Tam Leung Wai technology team.
 Current weather data from Hong Kong Observatory:
 • Situation: ${weatherData.generalSituation}
 • Forecast: ${weatherData.forecastDesc}
@@ -20,7 +20,7 @@ Current weather data from Hong Kong Observatory:
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 只禁止涉及色情、暴力、18+主題的輸入
+  // 禁止色情、暴力、18+ 主題
   const FORBIDDEN_PATTERNS = [
     /色情/,
     /暴力/,
@@ -31,10 +31,39 @@ Current weather data from Hong Kong Observatory:
     /xxx/i,
   ];
 
+  // 觸發詢問名稱
+  const NAME_PATTERNS = [
+    /what'?s your name\?/i,
+    /who are you\?/i,
+    /name of the chatbox/i,
+    /tell me your name/i,
+    /your name is\?/i,
+    /how should i call you\?/i,
+    /what should i call you\?/i,
+    /你叫什麼名字\?/,
+    /你的名字是什麼\?/,
+    /你怎麼稱呼\?/,
+    /你可以叫我什麼\?/,
+    /你是誰\?/,
+  ];
+
   const sendMessage = async (e: FormEvent) => {
     e.preventDefault();
     const trimmed = input.trim();
     if (!trimmed) return;
+
+    // 如果是在問名稱，立即回覆固定訊息
+    if (NAME_PATTERNS.some((re) => re.test(trimmed))) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: "I am Sally-GPT, developed by Sally Tam Leung Wai.",
+        },
+      ]);
+      setInput("");
+      return;
+    }
 
     // 檢查禁止詞
     if (FORBIDDEN_PATTERNS.some((re) => re.test(trimmed))) {
@@ -89,12 +118,12 @@ Current weather data from Hong Kong Observatory:
     }
   };
 
-  // 只顯示 user & assistant，隱藏 system prompt
+  // 只顯示 user & assistant，隱藏 system
   const visibleMessages = messages.filter((m) => m.role !== "system");
 
   return (
     <div className="card shadow-sm border-0 rounded-3 p-4 mb-5">
-      <h4 className="fw-bold mb-3">天氣小助手</h4>
+      <h4 className="fw-bold mb-3">Sally-GPT 天氣小助手</h4>
       <div
         style={{
           height: 200,
