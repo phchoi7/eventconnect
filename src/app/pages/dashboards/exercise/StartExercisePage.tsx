@@ -139,15 +139,12 @@ export const StartExercisePage: React.FC = () => {
 
       {/* Recommendation */}
       <div className="alert alert-primary text-center fw-bold fs-5">
-        今天合適做運動嗎？{" "}
-        <span className={isWeatherSuitable() ? "text-success" : "text-danger"}>
-          {isWeatherSuitable() ? "宜" : "不宜"}
-        </span>
-      </div>
-
-      <div className="alert alert-info text-center fw-bold fs-5">
         活動建議：你可以問問我們的AI小助手，關於任何活動也可以！
       </div>
+
+      {/* <div className="alert alert-info text-center fw-bold fs-5">
+        活動建議：你可以問問我們的AI小助手，關於任何活動也可以！
+      </div> */}
       <ChatBox weatherData={weatherData} />
 
       {/* Filter and LCSD Sports Grounds */}
