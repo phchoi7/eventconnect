@@ -125,7 +125,14 @@ Current weather data from Hong Kong Observatory:
     } catch (err: any) {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: `Error: ${err.message}` },
+        {
+          role: "assistant",
+          content: `Error: ${
+            err.message === "API error 401"
+              ? "伺服器目前很忙，請稍後再試"
+              : err.message
+          }`,
+        },
       ]);
     } finally {
       setLoading(false);
